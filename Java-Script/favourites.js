@@ -4,6 +4,8 @@ const addFavouriteButton = document.getElementById("add-favourite-button");
 // Selects Favourite Div
 const favouritesDiv = document.getElementById("favourites-div")
 
+const downloadAllFavouritesButton = document.getElementById("download-all-favourtites-button")
+
 // currentImage Stores Image Currently Displayed - Updated in databas.js onFetchRandomDog Function
 let currentImage = "";
 
@@ -44,6 +46,12 @@ function onDownloadClick(event) {
     downloadImage(imageElement.src);
 }
 
+function onDownloadAllClick(){
+    for(const imageSrc of favouritesList) {
+        downloadImage(imageSrc);
+    }
+}
+
 /**
  * Creates newImage Element and Append it to the Favourites Div
  */
@@ -77,6 +85,6 @@ function onAddFavouriteButtonClick() {
     favouritesDiv.append(newDiv);
 }
 
-
 // Link Events
 addFavouriteButton.onclick = onAddFavouriteButtonClick;
+downloadAllFavouritesButton.onclick = onDownloadAllClick;
