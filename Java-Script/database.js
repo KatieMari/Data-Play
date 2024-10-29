@@ -6,9 +6,6 @@ const randomDogButton = document.getElementById("random-dog-button");
 const breedSelect = document.getElementById("breed-select");
 const subBreedSelect = document.getElementById("sub-breed-select");
 
-
-
-
 /**
  * Fetch Information from any API and Return the data in message
  * @param {string} url url to be fetch
@@ -47,19 +44,20 @@ async function fetchBreedPossibilties() {
 }
 
 async function fetchRandomDog() {
+    // Defines Random Dof URL
     let randomDogUrl = "https://dog.ceo/api/breeds/image/random";
 
+    // Update with Breed if needed
     if (breedSelect.value !== "any") {
         randomDogUrl = "https://dog.ceo/api/breed/" + breedSelect.value + "/images/random";
     }
 
-        // Get Image Source from API
-        const imageSource = await fetchFromAPI(randomDogUrl);
-    
-        // Update Image with Received Source
-        dogImage.src = imageSource;
-    }
+    // Get Image Source from API
+    const imageSource = await fetchFromAPI(randomDogUrl);
 
+    // Update Image with Received Source
+    dogImage.src = imageSource;
+}
 
 // Link Buttons to Events
 randomDogButton.onclick = fetchRandomDog;
