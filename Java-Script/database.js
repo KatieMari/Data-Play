@@ -49,17 +49,22 @@ async function fetchBreedPossibilties() {
 async function fetchRandomDog() {
 
     if (breedSelect.value === "any") {
+        // Define URL
         const randomDogUrl = "https://dog.ceo/api/breeds/image/random";
 
+        // Get Image Source from API
         const imageSource = await fetchFromAPI(randomDogUrl);
 
         // Update Image with Received Source
         dogImage.src = imageSource;
     } else {
+        // Define URL
         const randomDogUrl = "https://dog.ceo/api/breed/" + breedSelect.value + "/images/random";
 
+        // Get Image Source from API
         const imageSource = await fetchFromAPI(randomDogUrl);
 
+        // Update Image with Received Source
         dogImage.src = imageSource;
     }
 }
