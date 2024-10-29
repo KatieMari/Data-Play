@@ -14,7 +14,7 @@ async function downloadImage(imageSrc) {
     // Image Fetch to get the Specific Image Information
     const image = await fetch(imageSrc);
     // Blob Contains the Specific Data Realted to the Image File Instead of just the Source URL
-    const imagBlob = await image.blob();
+    const imageBlob = await image.blob();
     // Creates a URL Object to Point to the Blob
     const imageURL = URL.createObjectURL(imageBlob);
 
@@ -76,11 +76,6 @@ function onAddFavouriteButtonClick() {
     // Appends Div to Favourites Div
     favouritesDiv.append(newDiv);
 }
-
-
-
-
-
 
 
 // Link Events
