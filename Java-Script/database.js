@@ -1,3 +1,4 @@
+const dogImage = document.getElementById("dog-image");
 const breedSelect = document.getElementById("breed-select");
 const subBreedSelect = document.getElementById("sub-breed-select");
 
@@ -20,21 +21,21 @@ async function fetchBreedPossibilties() {
 
         const breedsList = json.message;
 
-        for(const breed of breedsList) {
+        for (const breed of breedsList) {
             // Populate Breed Select - Creates New Option Element
             const newOption = document.createElement("option");
             newOption.text = breed;
             breedSelect.options.add(newOption, breed);
         }
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
     }
 
 }
 
-async function fetchRandomDog(){
-    try{
+async function fetchRandomDog() {
+    try {
         // Random Dog URL
         const randomDogUrl = "https://dog.ceo/api/breeds/image/random";
 
@@ -42,7 +43,7 @@ async function fetchRandomDog(){
         const response = await fetch(randomDogUrl);
 
         // Check Response is OK
-        if(!response.ok) {
+        if (!response.ok) {
             throw new Error("Response status: " + response.status);
         }
 
@@ -51,17 +52,14 @@ async function fetchRandomDog(){
         const message = json.message;
 
         // Update Image with Received Source
-
+        dogImage.src = message;
 
     } catch (error) {
         console.log(error);
     }
 }
-    
-
-
-
 
 
 // Functions to be Executed at the Beginning of the Code
+fetchRandomDog();
 fetchBreedPossibilties();

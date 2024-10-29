@@ -5,7 +5,6 @@
     overflow-x: hidden;
 }
 
-
 .container {
     display: flex;
     justify-content: center;
@@ -18,4 +17,8 @@
 
 .justify-left{
     justify-content: left;
+}
+
+#dog-image{
+    height: 300px;
 }
