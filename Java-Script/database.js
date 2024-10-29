@@ -47,31 +47,23 @@ async function fetchBreedPossibilties() {
 }
 
 async function fetchRandomDog() {
+    let randomDogUrl = "https://dog.ceo/api/breeds/image/random";
 
-    if (breedSelect.value === "any") {
-        // Define URL
-        const randomDogUrl = "https://dog.ceo/api/breeds/image/random";
-
-        // Get Image Source from API
-        const imageSource = await fetchFromAPI(randomDogUrl);
-
-        // Update Image with Received Source
-        dogImage.src = imageSource;
-    } else {
-        // Define URL
-        const randomDogUrl = "https://dog.ceo/api/breed/" + breedSelect.value + "/images/random";
+    if (breedSelect.value !== "any") {
+        randomDogUrl = "https://dog.ceo/api/breed/" + breedSelect.value + "/images/random";
+    }
 
         // Get Image Source from API
         const imageSource = await fetchFromAPI(randomDogUrl);
-
+    
         // Update Image with Received Source
         dogImage.src = imageSource;
     }
-}
 
-    // Link Buttons to Events
-    randomDogButton.onclick = fetchRandomDog;
 
-    // Functions to be Executed at the Beginning of the Code
-    fetchRandomDog();
-    fetchBreedPossibilties();
+// Link Buttons to Events
+randomDogButton.onclick = fetchRandomDog;
+
+// Functions to be Executed at the Beginning of the Code
+fetchRandomDog();
+fetchBreedPossibilties();
