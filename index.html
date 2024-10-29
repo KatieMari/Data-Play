@@ -11,6 +11,7 @@
 
     <!-- Link to Java -->
     <script src="Java-Script/database.js" defer></script>
+    <script src="Java-Script/favourites.js" defer></script>
 
 </head>
 
@@ -19,7 +20,7 @@
     <div class="container flex-column">
         <h1>Random Dog Generator</h1>
 
-        <img id="dog-image" alt="random dog"/>
+        <img id="dog-image" alt="random dog" />
 
         <!-- Generator -->
         <div>
@@ -39,14 +40,16 @@
             </div>
 
             <button id="random-dog-button">Get Random Dog</button>
-            <button>Add to Favourites</button>
+            <button id="add-favourite-button">Add to Favourites</button>
 
         </div>
     </div>
 
     <div class="container flex-column">
-        <div class="container flex-column">
+        <div id="favourites-div">
             <h2>Your Favourites</h2>
+
+            <!-- New Favourite Images will be Added -->
         </div>
         <button>Download All Favourites</button>
     </div>

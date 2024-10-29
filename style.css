@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
@@ -11,14 +11,20 @@
     align-items: center;
 }
 
-.flex-column{
+.flex-column {
     flex-direction: column;
 }
 
-.justify-left{
+.justify-left {
     justify-content: left;
 }
 
-#dog-image{
+.favourite-img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+#dog-image {
     height: 300px;
 }

@@ -8,17 +8,21 @@ const subBreedSelect = document.getElementById("sub-breed-select");
 
 /**
  * Fetch Information from any API and Return the data in message
- * @param {string} url URL to be fetched
+ * @param {string} url url to be fetch
  */
 async function fetchFromAPI(url) {
     try {
+        // Get Response from API
         const response = await fetch(url);
 
+        // Check Response is OK
         if (!response.ok) {
             throw new Error("Response status: " + response.status);
         }
 
+        // Get JSON from Response
         const json = await response.json();
+
         return json.message;
 
     } catch (error) {
@@ -26,66 +30,68 @@ async function fetchFromAPI(url) {
     }
 }
 
-// Fetches and populates the main breed list
 async function fetchBreedPossibilities() {
     const breedListUrl = "https://dog.ceo/api/breeds/list";
 
     const breedsList = await fetchFromAPI(breedListUrl);
 
     for (const breed of breedsList) {
+        // Populate Breed Select - Creates New Option Element
         const newOption = document.createElement("option");
         newOption.text = breed;
-        breedSelect.options.add(newOption);
+        breedSelect.options.add(newOption, breed);
     }
 }
 
-// Fetches and populates the sub-breed list based on selected breed
 async function fetchSubBreedPossibilities() {
-    // Clear existing sub-breed options
+
     while (subBreedSelect.options.length > 0) {
         subBreedSelect.remove(0);
     }
 
-    // Add "any" option
-    const defaultOption = document.createElement("option");
-    defaultOption.text = "any";
-    subBreedSelect.options.add(defaultOption);
+    const newOption = document.createElement("option");
+    newOption.text = "any";
+    subBreedSelect.options.add(newOption, "any");
 
-    // Fetch sub-breeds for the selected breed
-    const breedListUrl = `https://dog.ceo/api/breed/${breedSelect.value}/list`;
+    if(breedSelect.value === "any") return;
+
+    const breedListUrl = "https://dog.ceo/api/breed/" + breedSelect.value + "/list";
+
     const breedsList = await fetchFromAPI(breedListUrl);
 
-    // Populate sub-breed options if available
     for (const breed of breedsList) {
+        // Populate Sub-Breed Select - Creates New Option Element
         const newOption = document.createElement("option");
         newOption.text = breed;
-        subBreedSelect.options.add(newOption);
+        subBreedSelect.options.add(newOption, breed);
     }
 }
 
-// Fetches a random dog image, with optional breed or sub-breed
 async function fetchRandomDog() {
+    // Defines Random Dof URL
     let randomDogUrl = "https://dog.ceo/api/breeds/image/random";
 
+    // Update with Breed if needed
     if (breedSelect.value !== "any") {
-        randomDogUrl = `https://dog.ceo/api/breed/${breedSelect.value}/images/random`;
+        randomDogUrl = "https://dog.ceo/api/breed/" + breedSelect.value + "/images/random";
 
         if (subBreedSelect.value !== "any") {
-            randomDogUrl = `https://dog.ceo/api/breed/${breedSelect.value}/${subBreedSelect.value}/images/random`;
+            randomDogUrl = "https://dog.ceo/api/breed/" + breedSelect.value + "/" + subBreedSelect.value + "images/random"
         }
     }
 
-    // Get image source from API
+    // Get Image Source from API
     const imageSource = await fetchFromAPI(randomDogUrl);
 
-    // Update image with received source
+    // Update Image with Received Source
+    currentImage = imageSource;
     dogImage.src = imageSource;
 }
 
-// Link buttons to events
+// Link Buttons to Events
 randomDogButton.onclick = fetchRandomDog;
 breedSelect.onchange = fetchSubBreedPossibilities;
 
-// Execute functions at the start
+// Functions to be Executed at the Beginning of the Code
 fetchRandomDog();
 fetchBreedPossibilities();
