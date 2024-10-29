@@ -4,38 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Data Play</title>
+
+    <!-- Link to Styling -->
+    <link href="style.css" rel="stylesheet" />
+
 </head>
 
 <body>
 
-    <div>
+    <div class="container flex-column">
         <h1>Random Dog Generator</h1>
 
         <img />
 
-        <div>
-            <div>
+        <div class="container flex-column">
+            <div class="container justify-left">
                 <p>Breed</p>
                 <select>
                     <option>Any</option>
                 </select>
             </div>
 
-            <div>
+            <div class="container justify-left">
                 <p>Sub Breed</p>
                 <select>
                     <option>Any</option>
                 </select>
             </div>
+
+            <button>Get Random Dog</button>
+            <button>Add to Favourites</button>
+
         </div>
     </div>
 
-    <button>Get Random Dog</button>
-    <button>Add to Favourites</button>
-
-    <div>
-        <div>
+    <div class="container flex-column">
+        <div class="container flex-column">
             <h2>Your Favourites</h2>
         </div>
         <button>Download All Favourites</button>
