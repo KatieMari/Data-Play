@@ -15,3 +15,7 @@
 .flex-column{
     flex-direction: column;
 }
+
+.justify-left{
+    justify-content: left;
+}
