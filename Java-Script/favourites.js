@@ -13,21 +13,35 @@ let favouritesList = [];
 async function downloadImage(imageSrc) {
     // Image Fetch to get the Specific Image Information
     const image = await fetch(imageSrc);
+    // Blob Contains the Specific Data Realted to the Image File Instead of just the Source URL
     const imagBlob = await image.blob();
+    // Creates a URL Object to Point to the Blob
     const imageURL = URL.createObjectURL(imageBlob);
 
+    // Create Anchor Element with href imageURL
     const link = document.createElement("a");
     link.href = imageURL;
+    // Sets Download Name
     link.download = "cuteDog.png";
+
+    // Force Download by Triggering the Click Event of the Anchor Element
     link.click();
 }
 
+/**
+ * Download Image Closer to the Download Button Clicked
+ * @param {event} event 
+ */
 function onDownloadClick(event) {
+    // Find Closest Image with the Help of Closest and querySelector
     const clickedButton = event.target;
+    // Closest -> Looks for Closest Element of given Type "Up the Tree"
     const parentDiv = clickedButton.closest("div");
+    // querySelector -> Looks for Closest Element of given Type "Down the Tree"
     const imageElement = parentDiv.querySelector("img");
 
-
+    // Trigger Download Asychronously
+    downloadImage(imageElement.src);
 }
 
 /**
@@ -53,6 +67,7 @@ function onAddFavouriteButtonClick() {
     // Creat download Button
     const downloadButton = document.createElement("button");
     downloadButton.innerHTML = "Download";
+    downloadButton.onclick = onDownloadClick;
 
     // Append newDiv Childs
     newDiv.append(newImage);
